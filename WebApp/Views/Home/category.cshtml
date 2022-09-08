@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Product>
+ @addTagHelper *,WebApp
+    <div class="row">
+        <div>
+            <pagination size="10" url="/home/category/@ViewContext.RouteData.Values["id"]/{0}" total="@ViewBag.total"></pagination>
+        </div>
+        <a href="/home/list">List</a>
+        @{
+            int p = Convert.ToInt32(ViewContext.RouteData.Values["p"]) - 1;
+            if (p==-1)
+            {
+                p = 0;
+            }
+        }
+   
+        <script>
+    $($('.pagination li.page-item')[@p]).addClass('active');
+        </script>
+        <div class="col-3">
+            <ul>
+                @foreach (Category item in ViewBag.categories)
+                {
+                    <li><a href="/home/category/@item.CategoryID">@item.CategoryName</a></li>
+                }
+
+            </ul>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                @foreach (Product item in Model)
+                {
+                    <div class="col-3">
+                        <h2><a href="/home/detail/@item.ProductId">@item.ProductName</a></h2>
+                        <div>
+                            <a href="/home/detail/@item.ProductId">
+                                <img class="img-fluid" src="/Photo/@item.ImageUrl.Split(',')[0]" alt="@item.ProductName" />
+                            </a>
+
+                        </div>
+                        <p>Price:<b>@item.UnitOfPrice.ToString("#,###")</b></p>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+

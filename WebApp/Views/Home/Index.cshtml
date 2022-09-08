@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Product>
+@addTagHelper *,WebApp
+@*@Html.Raw(ViewBag.Welcome)*@
+<div class="row">
+    <div>
+        <pagination size="10" url="/home/index/{0}" total="@ViewBag.total"></pagination>
+    </div>
+    <a href="/home/list">List</a>
+    @{
+        int p = Convert.ToInt32(ViewContext.RouteData.Values["id"])-1;
+    }
+@*<ul class="pagination">
+    @for (int i = 1; i <= ViewBag.n; i++)
+    {
+        <li class="page-item">
+            <a class="page-link" href="/home/index/@i">@i</a>
+        </li>
+        @if (i == p)
+        {
+            <li class="page-item active">
+                <a class="page-link" href="/home/index/@i">@i</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item ">
+                <a class="page-link" href="/home/index/@i">@i</a>
+            </li>
+        }
+
+    }
+</ul>*@
+<script>
+    $($('.pagination li.page-item')[@p]).addClass('active');
+</script>
+    <div class="col-3">
+        <ul>
+            @foreach (Category item in ViewBag.categories)
+            {
+                <li><a href="/home/category/@item.CategoryID">@item.CategoryName</a></li>
+            }
+
+        </ul>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            @foreach (Product item in Model)
+            {
+                <div class="col-3">
+                    <h2><a href="/home/detail/@item.ProductId">@item.ProductName</a></h2>
+                    <div>
+                        <a href="/home/detail/@item.ProductId">
+                            <img class="img-fluid" src="/Photo/@item.ImageUrl.Split(',')[0]" alt="@item.ProductName" />
+                        </a>
+
+                    </div>
+                    <p>Price:<b>@item.UnitOfPrice.ToString("#,###")</b></p>
+
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+
+ 

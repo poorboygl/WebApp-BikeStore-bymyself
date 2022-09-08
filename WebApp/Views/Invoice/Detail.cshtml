@@ -1,0 +1,21 @@
+﻿@model Invoice
+    <p>Your Invoice</p>
+    <h2>@Model.Fullname</h2>
+    <div>@Model.Address</div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Product</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        @foreach (InvoiceDetail item in Model.InvoiceDetails)
+        {
+    <tr>
+        <td>@item.ProductName</td>
+        <td>@item.ImageUrl</td>
+        <td>@item.UnitOfPrice</td>
+        <td>@item.Quantity</td>
+    </tr>
+        }
+    </table>

@@ -1,0 +1,50 @@
+﻿@model  IEnumerable<Cart>
+    <table class="table table-bordered">
+        <tr>
+            <td>Product</td>
+            <td>Image</td>
+            <td>Price</td>
+            <td>Quantity</td>
+        </tr>
+        @foreach (Cart item in Model)
+        {
+    <tr>
+        <td>
+            <a href="/home/detail/@item.ProductID">@item.ProductName</a>
+        </td>
+        <td><a href="/home/detail/@item.ProductID">
+                <img src="/Photo/@item.ImageUrl.Split(",")[0]" alt="@item.ProductName" width="70" />
+            
+            </a>
+        
+        </td>
+        <td>@item.UnitofPrice.ToString("#,###")</td>
+        <td>
+            <input min="1" max="100" v="@item.ProductID" type="number" name="qty" value="@item.Quantity" />
+        </td>
+        <td>
+            <a class="d" href="/cart/delete/@item.ProductID"><i class="fas fa-trash-alt"></i></a>
+        </td>
+    </tr>
+        }
+    </table>
+<center>
+    <a class="btn btn-primary" href="/cart/checkout">Check Out</a>
+</center>
+    <script>
+        $('.d').click(function () {
+            return confirm("Are You sure delete?");
+        });
+        $('input[name="qty"]').click(function () {
+            // console.log($(this).attr('v'));
+            var obj = { productID: $(this).attr('v'), quantity: $(this).val() };
+            $.post('/cart/edit', obj, function (ret) {
+
+                console.log(ret);
+            });
+
+        
+
+        });
+
+    </script>

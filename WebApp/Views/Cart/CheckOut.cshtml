@@ -1,0 +1,105 @@
+﻿@model Invoice
+<p>Check Out</p>
+@*<form method="post">
+
+    <div>
+        <label>Email</label>
+        <input type="email" name="email" />
+    </div>
+    <div>
+        <label>FullName</label>
+        <input type="text" name="fullname" />
+    </div>
+    <div>
+        <label>Phone</label>
+        <input type="text" name="phone" />
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" name="address" />
+    </div>
+    <div>
+        <button class="btn btn-primary">Confirm</button>
+    </div>
+</form>*@
+
+<form method="post">
+    <div>
+        <label>Email</label>
+        <input type="email" asp-for="Email" />
+    </div>
+    <div>
+        <label>FullName</label>
+        <input type="text" asp-for="Fullname" />
+    </div>
+    <div>
+        <label>Phone</label>
+        <input type="text" asp-for="Phone" />
+    </div>
+    <div>
+        <label>Province</label>
+        <select asp-for="ProvincedID" asp-items="ViewBag.provinces"></select>
+    </div>
+    <div>
+        <label>District</label>
+        <select asp-for="DistrictID" ></select>
+    </div>
+    <div>
+        <label>Ward</label>
+        <select asp-for="WardID"></select>
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" asp-for="Address" />
+    </div>
+    <div>
+        <button class="btn btn-primary">Confirm</button>
+    </div>
+</form>
+<script>
+    var distrist = {};
+    function showDistricts(a) {
+        for (var i in a) {
+           $(DistrictID).append(`<option value="${a[i]['districtId']}">${a[i]['districtName']}</option>`);
+        }
+    }
+    function LoadDistricts(id) {
+        $(DistrictID).html(null);
+        if (distrist[id] == undefined) {
+            var url = '/cart/districts/' + id;
+            $.get(url, function (a) {
+                distrist[id] = a;
+                showDistricts(a);
+                LoadWards($(DistrictID).val());
+            });
+            console.log('chua co');
+        }
+        else {
+            showDistricts(distrist[id]);
+            console.log('Co roi');
+        }
+       
+    }
+    function LoadWards(id) {
+        $(WardID).html(null);
+        var url = '/cart/Wards/' + id;
+        $.get(url, function (a) {
+            for (var i in a) {
+                $(WardID).append(`<option  value="${a[i]['wardID']}">${a[i]['wardName']}</option>`);
+
+            }
+        });
+    }
+    LoadDistricts($(ProvincedID).val());
+
+    $(ProvincedID).change(function ()
+    {
+        LoadDistricts($(this).val());
+    });
+
+    $(DistrictID).change(function ()
+    {
+            LoadWards($(this).val());
+
+    });
+</script>

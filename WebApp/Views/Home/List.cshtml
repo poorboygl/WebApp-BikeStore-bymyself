@@ -1,0 +1,31 @@
+﻿@model  IEnumerable<Category>
+
+    <div>
+        @foreach (Category item in Model)
+        {
+        <div class="a" style="text-align:center"><b>@item.CategoryName</b></div>
+            <div class=" row hide">
+                @foreach (Product product in item.Products)
+                {
+                    <div class="col-4">
+                        <h3>@product.ProductName</h3>
+                        <img src="/Photo/@product.ImageUrl.Split(',')[0]"  />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+<style>
+    .a {
+        cursor: pointer;
+    }
+    .hide{
+        display:none;
+    }
+  
+</style>
+<script>
+    $('.a').click(function () {
+        $(this).next('div').toggleClass('hide');
+    });
+</script>

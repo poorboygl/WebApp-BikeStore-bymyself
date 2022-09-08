@@ -1,0 +1,9 @@
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.csprojAssemblyReference.cache
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\2.Quan Trong\HocWeb\Dapper\WebApp\Core\obj\Debug\netcoreapp3.1\Core.pdb
